@@ -12,7 +12,11 @@ class HomeSectionView(APIView):
     def get(self, request):
         data = HomeSection.objects.first()
         serializer = HomeSectionSerializer(data)
-        return Response(serializer.data,status=status.HTTP_200_OK)
+        return Response({
+            "success":True,
+            "message":"Home Section data retrive successfully",
+            "data":serializer.data
+        },status=status.HTTP_200_OK)
 
 
 class AboutSectionView(APIView):
