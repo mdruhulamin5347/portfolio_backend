@@ -38,6 +38,7 @@ class AboutSection(BaseModel):
 
 
 class Technology(BaseModel):
+    section = models.CharField(max_length=150,null=True,blank=True)
     name = models.CharField(max_length=150, null=True, blank=True)
 
     def __str__(self):
