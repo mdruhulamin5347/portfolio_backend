@@ -126,6 +126,11 @@ class LocationSection(BaseModel):
     email = models.EmailField(null=True,blank=True)
     phone_number = models.CharField(max_length=20,null=True,blank=True)
     location = models.CharField(max_length=255,null=True,blank=True)
+    facebook_link = models.URLField(max_length=255,null=True,blank=True)
+    whats_app = models.URLField(max_length=255,null=True,blank=True)
+    codechef_link = models.URLField(max_length=255,null=True,blank=True)
+    codeforces_link = models.URLField(max_length=255,null=True,blank=True)
+    personal_website = models.URLField(max_length=255,null=True,blank=True)
     def __str__(self):
         return f"{self.email} - {self.location}"
 
