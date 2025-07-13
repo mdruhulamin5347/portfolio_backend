@@ -1,6 +1,6 @@
 deployment:
   tasks:
-    - source /home/your_user/virtualenv/myapp/3.x/bin/activate
+    - source /home/dkkatlcy/virtualenv/portfolio_backend/3.11/bin/activate && cd /home/dkkatlcy/portfolio_backend
     - pip install -r requirements.txt
     - python manage.py migrate
     - python manage.py collectstatic --noinput
