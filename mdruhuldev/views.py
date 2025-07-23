@@ -104,7 +104,7 @@ class ContactMessageView(APIView):
             message = serializer.validated_data['message']
 
             send_mail(
-                subject=f"New message from {name}",
+                subject = f"Portfolio Contact: Message from {name}",
                 message=f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}",
                 from_email='no-reply@mdruhuldev.com',
                 recipient_list=['myprojects.helpservice@gmail.com'],
