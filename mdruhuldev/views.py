@@ -4,7 +4,7 @@ from rest_framework import status, permissions
 from django.core.mail import send_mail
 from .models import *
 from .serializers import *
-
+from django.conf import settings
 
 class HomeSectionView(APIView):
     permission_classes = [permissions.AllowAny]
@@ -102,14 +102,17 @@ class ContactMessageView(APIView):
             name = serializer.validated_data['name']
             email = serializer.validated_data['email']
             message = serializer.validated_data['message']
-
-            send_mail(
-                subject = f"Portfolio Contact: Message from {name}",
-                message=f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}",
-                from_email='no-reply@mdruhuldev.com',
-                recipient_list=['myprojects.helpservice@gmail.com'],
-                fail_silently=False,
-            )
+            
+            try:
+                send_mail(
+                    subject = f"Portfolio Contact: Message from {name}",
+                    message=f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}",
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list=[settings.EMAIL_HOST_USER,"mdruhulamin534793@gmail.com"],
+                    fail_silently=False,
+                )
+            except:
+                return Response({"message":"Message sent successfully without sent mail"},status=status.HTTP_200_OK)
 
             return Response({"message": "Message sent successfully!"}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
